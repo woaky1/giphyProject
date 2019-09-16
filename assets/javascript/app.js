@@ -13,5 +13,11 @@ $(document).ready(function(){
         }
     }
 
+    $("#add-topic").on("click", function(event) {
+        event.preventDefault();
+        var newTopic = $("#topic-input").val().trim();
+        topics.push(newTopic);
+        buttonMaker();
+    });
     buttonMaker();
 });
