@@ -22,7 +22,7 @@ $(document).ready(function(){
 
     function displayGifs() {
         var topicToDisplay = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=uHRSYqUJ9J8SbR9afkR7ER1ahpRP40py&q=" + topicToDisplay + "&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=uHRSYqUJ9J8SbR9afkR7ER1ahpRP40py&q=" + topicToDisplay + "&limit=10&rathing=pg";
 
         $.ajax({
             url: queryURL,
@@ -30,9 +30,11 @@ $(document).ready(function(){
         }).then(function(response) {
             console.log(response);
             for (var i = 0; i < 10; i++) {
-                var gifDiv = $("<div class='gif'>");
-                var gifURL = response.data[i].images.fixed_height_still.url;
-                var gifImage = $("<img>").attr("src",gifURL);
+                var gifDiv = $("<div class='gif float-left m-1'>");
+                var gifURL = response.data[i].images.fixed_width_still.url;
+                var gifStillURL = response.data[i].images.fixed_width_still.url;
+                var gifMovingURL = response.data[i].images.fixed_width.url;
+                var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL});
                 gifDiv.append(gifImage);
                 $("#gifLand").prepend(gifDiv);
             }
