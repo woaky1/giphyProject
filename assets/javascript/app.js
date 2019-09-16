@@ -31,9 +31,9 @@ $(document).ready(function(){
             console.log(response);
             for (var i = 0; i < 10; i++) {
                 var gifDiv = $("<div class='gif float-left m-1'>");
-                var gifURL = response.data[i].images.fixed_width_still.url;
-                var gifStillURL = response.data[i].images.fixed_width_still.url;
-                var gifMovingURL = response.data[i].images.fixed_width.url;
+                var gifURL = response.data[i].images.fixed_height_still.url;
+                var gifStillURL = response.data[i].images.fixed_height_still.url;
+                var gifMovingURL = response.data[i].images.fixed_height.url;
                 var ratingValue = response.data[i].rating;
                 var ratingText = $("<p>Rating: " + ratingValue + "</p>");
                 var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF"});
