@@ -34,14 +34,27 @@ $(document).ready(function(){
                 var gifURL = response.data[i].images.fixed_width_still.url;
                 var gifStillURL = response.data[i].images.fixed_width_still.url;
                 var gifMovingURL = response.data[i].images.fixed_width.url;
-                var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL});
+                var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF"});
                 gifDiv.append(gifImage);
                 $("#gifLand").prepend(gifDiv);
             }
         });
     };
 
+
     $(document).on("click", ".99-btn", displayGifs);
+
+    $(document).on("click",".isAGIF", function() {
+        // console.log(this);
+        var playingYet = $(this).attr("data-isMoving");
+        var stillURL = $(this).attr("data-still");
+        var movingURL = $(this).attr("data-move");
+        if(playingYet == "no") {
+            $(this).attr({"src":movingURL,"data-isMoving":"yes"});
+        } else {
+            $(this).attr({"src":stillURL,"data-isMoving":"no"});
+        }
+    });
 
     buttonMaker();
 });
