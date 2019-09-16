@@ -1,4 +1,4 @@
-topics = ["Jake Peralta", "Rosa Diaz", "Terry Jeffords", "Amy Santiago", "Charles Boyle", "Gina Linetti", "Raymond Holt", "Michael Hitchcock", "Norm Scully", "the 99"];
+topics = ["Jake Peralta", "Rosa Diaz", "Terry Jeffords", "Amy Santiago", "Charles Boyle", "Gina Linetti", "Raymond Holt", "Hitchcock 99", "Scully 99", "the 99"];
 
 $(document).ready(function(){
 
