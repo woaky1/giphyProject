@@ -12,12 +12,30 @@
 </head>
 
 <body>
+    <header>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Brooklyn_Nine-Nine_Logo.png" alt="Brooklyn 99 Logo" id="showLogo">
+                <h1>Gif Generator</h1>
+            </div>
+        </div>
+    </header>
     <div class="container">
         <div class="row">
             <div class="col-md-12" id="buttons-view"></div>
         </div>
         <div class="row">
-            <div class="col-md-8" id="gifLand"></div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="hidden" id="addMore">Add more gifs</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="gifLand">
+                    </div>
+                </div>
+            </div>
             <div class="col-md-4">
                 <Form>
                     Add a Brooklyn 99 Topic!
@@ -25,8 +43,6 @@
                     <br>
                     <input type="submit" value="Add it!" id="add-topic">
                 </Form>
-                
-
             </div>
         </div>
     </div>

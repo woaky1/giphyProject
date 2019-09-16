@@ -5,3 +5,16 @@ button {
 input {
     margin: 5px 5px;
 }
+
+#showLogo {
+    max-height: 149px;
+    max-width: 267px;
+}
+
+body {
+    background: #3680f7;
+}
+
+.hidden {
+    display: none;
+}
