@@ -107,11 +107,17 @@ $(document).ready(function(){
             displayFavorites();
             console.log(favoriteArray);
         } else {
+            IDnum = $(this).attr("data-id");
             $(this).attr({"data-favorite":"no","class":"fav-button btn-info"});
             console.log(this);
-            var toDeleteIndex = favoriteArray.findIndex(function() {
-                favoriteArray == $(this).attr("data-id");
-            });
+            for (var j = 0; j < favoriteArray.length; j++) {
+                if (favoriteArray[j].id == IDnum) {
+                    toDeleteIndex = j;
+                }
+            }
+            // var toDeleteIndex = favoriteArray.findIndex(function() {
+            //     favoriteArray == $(this).attr("data-id");
+            // });
             console.log("toDeleteIndex: " + toDeleteIndex);
             favoriteArray.splice(toDeleteIndex,1);
             displayFavorites();
