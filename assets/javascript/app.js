@@ -1,6 +1,7 @@
 topics = ["Jake Peralta", "Rosa Diaz", "Terry Jeffords", "Amy Santiago", "Charles Boyle", "Gina Linetti", "Raymond Holt", "Hitchcock 99", "Scully 99", "the 99"];
 var offsetValue = 0;
 var topicToDisplay;
+var favoriteArray = [];
 
 $(document).ready(function(){
 
@@ -39,9 +40,10 @@ $(document).ready(function(){
                 var gifStillURL = response.data[i].images.fixed_height_still.url;
                 var gifMovingURL = response.data[i].images.fixed_height.url;
                 var ratingValue = response.data[i].rating;
+                var IDnum = response.data[i].id;
                 var ratingText = $("<p>Rating: " + ratingValue + "</p>");
-                var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF"});
-                var favorite = $("<button>").text("Favorite").attr({"data-favorite":"no","class":"fav-button btn-info","data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no"});
+                var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF","data-id":IDnum});
+                var favorite = $("<button>").text("Favorite").attr({"data-favorite":"no","class":"fav-button btn-info","data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","data-id":IDnum});
                 gifDiv.append(ratingText, gifImage, favorite);
                 $("#gifLand").prepend(gifDiv);
             }
@@ -80,8 +82,9 @@ $(document).ready(function(){
                 var gifMovingURL = response.data[i].images.fixed_height.url;
                 var ratingValue = response.data[i].rating;
                 var ratingText = $("<p>Rating: " + ratingValue + "</p>");
-                var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF"});
-                var favorite = $("<button>").text("Favorite").attr({"data-favorite":"no","class":"fav-button btn-info","data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no"});
+                var IDnum = response.data[i].id;
+                var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF","data-id":IDnum});
+                var favorite = $("<button>").text("Favorite").attr({"data-favorite":"no","class":"fav-button btn-info","data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","data-id":IDnum});
                 gifDiv.append(ratingText, gifImage, favorite);
                 $("#gifLand").prepend(gifDiv);
             }
@@ -95,14 +98,28 @@ $(document).ready(function(){
     function makeFavorite() {
         if ($(this).attr("data-favorite") == "no") {
             $(this).attr({"data-favorite":"yes","class":"fav-button btn-danger"});
+            favoriteObject = {
+                "id":$(this).attr("data-id"),
+                "stillUrl":$(this).attr("data-still"),
+                "movingUrl":$(this).attr("data-move"),
+            }
+            favoriteArray.push(favoriteObject);
             displayFavorites();
+            console.log(favoriteArray);
         } else {
             $(this).attr({"data-favorite":"no","class":"fav-button btn-info"});
+            console.log(this);
+            var toDeleteIndex = favoriteArray.findIndex(function() {
+                favoriteArray == $(this).attr("data-id");
+            });
+            console.log("toDeleteIndex: " + toDeleteIndex);
+            favoriteArray.splice(toDeleteIndex,1);
             displayFavorites();
+            console.log(favoriteArray);
         }
         
     };
-
+    
     $("#addMore").on("click", addMoreGifs);
 
     $(document).on("click", ".fav-button", makeFavorite);
