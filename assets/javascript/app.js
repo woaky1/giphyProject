@@ -92,7 +92,16 @@ $(document).ready(function(){
     }
 
     function displayFavorites() {
-        console.log("You clicked favorite");
+        $("#favoriteLand").empty();
+        for (var k = 0; k < favoriteArray.length; k++) {
+            var gifDiv = $("<div class='gif float-left m-1 flex-column d-flex'>");
+            var gifURL = favoriteArray[k].stillUrl;
+            var gifStillURL = favoriteArray[k].stillUrl;
+            var gifMovingURL = favoriteArray[k].movingUrl;
+            var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF"});
+            gifDiv.append(gifImage);
+            $("#favoriteLand").prepend(gifDiv);
+        }
     }
 
     function makeFavorite() {
@@ -101,7 +110,7 @@ $(document).ready(function(){
             favoriteObject = {
                 "id":$(this).attr("data-id"),
                 "stillUrl":$(this).attr("data-still"),
-                "movingUrl":$(this).attr("data-move"),
+                "movingUrl":$(this).attr("data-move")
             }
             favoriteArray.push(favoriteObject);
             displayFavorites();
@@ -115,10 +124,6 @@ $(document).ready(function(){
                     toDeleteIndex = j;
                 }
             }
-            // var toDeleteIndex = favoriteArray.findIndex(function() {
-            //     favoriteArray == $(this).attr("data-id");
-            // });
-            console.log("toDeleteIndex: " + toDeleteIndex);
             favoriteArray.splice(toDeleteIndex,1);
             displayFavorites();
             console.log(favoriteArray);
