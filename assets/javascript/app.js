@@ -31,18 +31,18 @@ $(document).ready(function(){
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            $("#addMore").removeAttr("class","hidden");
+            $("#addMore").removeAttr("class","hidden").attr("class","btn-warning");
             for (var i = 0; i < 10; i++) {
                 offsetValue = 0;
-                var gifDiv = $("<div class='gif float-left m-1'>");
+                var gifDiv = $("<div class='gif float-left m-1 flex-column d-flex'>");
                 var gifURL = response.data[i].images.fixed_height_still.url;
                 var gifStillURL = response.data[i].images.fixed_height_still.url;
                 var gifMovingURL = response.data[i].images.fixed_height.url;
                 var ratingValue = response.data[i].rating;
                 var ratingText = $("<p>Rating: " + ratingValue + "</p>");
                 var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF"});
-                gifDiv.append(ratingText);
-                gifDiv.append(gifImage);
+                var favorite = $("<button>").text("Favorite").attr({"data-favorite":"no","class":"fav-button btn-info","data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no"});
+                gifDiv.append(ratingText, gifImage, favorite);
                 $("#gifLand").prepend(gifDiv);
             }
         });
@@ -74,21 +74,38 @@ $(document).ready(function(){
         }).then(function(response) {
             console.log(response);
             for (var i = 0; i < 10; i++) {
-                var gifDiv = $("<div class='gif float-left m-1'>");
+                var gifDiv = $("<div class='gif float-left m-1 flex-column d-flex'>");
                 var gifURL = response.data[i].images.fixed_height_still.url;
                 var gifStillURL = response.data[i].images.fixed_height_still.url;
                 var gifMovingURL = response.data[i].images.fixed_height.url;
                 var ratingValue = response.data[i].rating;
                 var ratingText = $("<p>Rating: " + ratingValue + "</p>");
                 var gifImage = $("<img>").attr({"src":gifURL,"data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no","class":"isAGIF"});
-                gifDiv.append(ratingText);
-                gifDiv.append(gifImage);
+                var favorite = $("<button>").text("Favorite").attr({"data-favorite":"no","class":"fav-button btn-info","data-still":gifStillURL,"data-move":gifMovingURL,"data-isMoving":"no"});
+                gifDiv.append(ratingText, gifImage, favorite);
                 $("#gifLand").prepend(gifDiv);
             }
         });
     }
 
+    function displayFavorites() {
+        console.log("You clicked favorite");
+    }
+
+    function makeFavorite() {
+        if ($(this).attr("data-favorite") == "no") {
+            $(this).attr({"data-favorite":"yes","class":"fav-button btn-danger"});
+            displayFavorites();
+        } else {
+            $(this).attr({"data-favorite":"no","class":"fav-button btn-info"});
+            displayFavorites();
+        }
+        
+    };
+
     $("#addMore").on("click", addMoreGifs);
+
+    $(document).on("click", ".fav-button", makeFavorite);
 
     buttonMaker();
 });
