@@ -15,6 +15,7 @@ body {
     background: #3680f7;
 }
 
+/* We use this class to hide then reveal the "Add more gifs" button. */
 .hidden {
     display: none;
 }

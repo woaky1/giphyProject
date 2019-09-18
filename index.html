@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Brooklyn 99 Gifs</title>
+    <!-- Below we link to the reset css to clear out any default styleing -->
     <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Here we grab bootstrap's css. -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- This links to a bit of custom styling we've added. -->
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
+    <!-- Here we have the page header. -->
     <header>
         <div class="row">
             <div class="col-md-12 text-center">
@@ -22,16 +26,19 @@
     </header>
     <div class="container">
         <div class="row">
+            <!-- The following div is where we'll display out buttons -->
             <div class="col-md-12" id="buttons-view"></div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-12">
+                        <!-- This is the button to dislay more gifs. We hide it initially, then reveal it because you can't add more gifs until you display some!-->
                         <button class="hidden" id="addMore">Add more gifs</button>
                     </div>
                 </div>
                 <div class="row">
+                    <!-- The following div is where we'll show the gifs we retrieved. -->
                     <div class="col-md-12" id="gifLand">
                     </div>
                 </div>
@@ -39,6 +46,7 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-12">
+                        <!-- This is the form we use to add additional topic buttons to the page -->
                         <Form>
                             <span class="whiteText">Add a Brooklyn 99 Topic!</span>
                             <input type="text" name="new-topic" id="topic-input">
@@ -49,6 +57,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        <!-- Here we show gifs that the user has selected as favorites. -->
                         <h2>Favorites:</h2>
                         <div id="favoriteLand"></div>
                     </div>
@@ -56,6 +65,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Here we refernce a number of script sources, starting with jquery, then two related to bootstrap, then the core javascript that drives the page. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
