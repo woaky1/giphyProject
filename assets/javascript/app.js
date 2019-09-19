@@ -33,7 +33,6 @@ $(document).ready(function(){
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
             $("#addMore").removeAttr("class","hidden").attr("class","btn-warning");
             for (var i = 0; i < 10; i++) {
                 offsetValue = 0;
@@ -57,7 +56,6 @@ $(document).ready(function(){
 
     // This is an event listener checking to see if the user has clicked a gif, and then toggling the moving image of the gif on and off.
     $(document).on("click",".isAGIF", function() {
-        // console.log(this);
         var playingYet = $(this).attr("data-isMoving");
         var stillURL = $(this).attr("data-still");
         var movingURL = $(this).attr("data-move");
@@ -77,7 +75,6 @@ $(document).ready(function(){
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
             for (var i = 0; i < 10; i++) {
                 var gifDiv = $("<div class='gif float-left m-1 flex-column d-flex'>");
                 var gifURL = response.data[i].images.fixed_height_still.url;
@@ -119,11 +116,9 @@ $(document).ready(function(){
             }
             favoriteArray.push(favoriteObject);
             displayFavorites();
-            console.log(favoriteArray);
         } else {
             IDnum = $(this).attr("data-id");
             $(this).attr({"data-favorite":"no","class":"fav-button btn-info"});
-            console.log(this);
             for (var j = 0; j < favoriteArray.length; j++) {
                 if (favoriteArray[j].id == IDnum) {
                     toDeleteIndex = j;
@@ -131,7 +126,6 @@ $(document).ready(function(){
             }
             favoriteArray.splice(toDeleteIndex,1);
             displayFavorites();
-            console.log(favoriteArray);
         }
         
     };
